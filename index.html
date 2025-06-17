@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 9</title>
+  <link rel="stylesheet" href="./css/all.min.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <main class="py-5">
+    <section>
+      <div class="container d-flex justify-content-center align-items-center flex-column">
+        <h1 class="heading text-center mb-2">Bookmarker</h1>
+        <div class="box gap-4 w-100 p-3 py-4 mt-5 d-flex justify-content-center align-items-center flex-column">
+          <h2>
+            <i class="fa-solid fa-bookmark"></i>
+            Bookmark your favorite sites
+            <i class="fa-solid fa-bookmark"></i>
+          </h2>
+          <div class="w-100">
+            <label class="pb-2 fw-semibold" for="bookmarkName">
+              <i class="fa-solid fa-book-bookmark pe-2"></i>
+              Site Name
+            </label>
+            <input type="text" class="form-control" name="bookmarkName" id="bookmarkName" placeholder="Bookmark Name">
+            <h4 class="h6 bg-danger text-white d-none mt-1 rounded-1" id="NameError"></h4>
+          </div>
+          <div class="w-100">
+            <label class="pb-2 fw-semibold" for="bookmarkURL">
+              <i class="fa-solid fa-link pe-2"></i>
+              Site URL
+            </label>
+            <input type="text" class="form-control" name="bookmarkURL" id="bookmarkURL" placeholder="Bookmark Name">
+            <h4 class="h6 bg-danger text-white d-none mt-1 rounded-1" id="URLError"></h4>
+          </div>
+          <button onclick="addBookmark();" class="btn btn-success py-1 px-5" id="submitBtn">Add Book</button>
+        </div>
+        <table class="table mt-4 bg-light text-center">
+          <thead>
+            <tr>
+              <th>Index</th>
+              <th>Website Name</th>
+              <th>Visite</th>
+              <th>Maintenance</th>
+            </tr>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
