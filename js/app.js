@@ -15,26 +15,25 @@ if (localStorage.getItem("bookMarks") != null) {
   display();
 }
 
-
 function addBookmark() {
   var bookMark = {
     name: siteName.value.trim(),
     link: siteURL.value.trim()
   };
+  
   if (isBookmarkValid(bookMark.name, bookMark.link)) {
     if(submitBtn.innerHTML == 'Add Bookmark') {
       bookMarks.push(bookMark);
     } else {
       bookMarks.splice(updateIndex, 1, bookMark);
       submitBtn.innerHTML = "Add Bookmark";
+      updateIndex = -1;
     }
     localStorage.setItem("bookMarks", JSON.stringify(bookMarks));
-    error.innerHTML = "";
     display();
     clearInputs();
   }
 }
-
 
 function isBookmarkValid(name, url) {
   let valid = true;
@@ -42,30 +41,28 @@ function isBookmarkValid(name, url) {
   if (!bookmarkNameRegExp.test(name)) {
     NameError.innerHTML = `Invalid name. Must be 3-30 chars, start with a letter.`;
     NameError.classList.remove("d-none");
-    bookmarkName.classList.add("is-invalid");
+    siteName.classList.add("is-invalid");
     valid = false;
   } else {
     NameError.innerHTML = "";
     NameError.classList.add("d-none");
-    bookmarkName.classList.remove("is-invalid");
-    bookmarkName.classList.add("is-valid");
+    siteName.classList.remove("is-invalid");
+    siteName.classList.add("is-valid");
   }
 
   if (!bookmarkURLRegExp.test(url)) {
     URLError.innerHTML = `Invalid URL. Must start with https:// and have a valid domain.`;
     URLError.classList.remove("d-none");
-    bookmarkURL.classList.add("is-invalid");
+    siteURL.classList.add("is-invalid");
     valid = false;
   } else {
     URLError.innerHTML = "";
     URLError.classList.add("d-none");
-    bookmarkURL.classList.remove("is-invalid");
-    bookmarkURL.classList.add("is-valid");
+    siteURL.classList.remove("is-invalid");
+    siteURL.classList.add("is-valid");
   }
   return valid;
 }
-
-
 
 function display() {
   var cartona = "";
@@ -102,28 +99,26 @@ function display() {
   document.getElementById("tBody").innerHTML = cartona;
 }
 
-
 function clearInputs() {
   siteName.value = '';
   siteURL.value = '';
+  
+
+  siteName.classList.remove("is-valid", "is-invalid");
+  siteURL.classList.remove("is-valid", "is-invalid");
+  
 
   NameError.innerHTML = '';
   NameError.classList.add("d-none");
-  NameError.classList.remove("is-invalid");
-
   URLError.innerHTML = '';
   URLError.classList.add("d-none");
-  URLError.classList.remove("is-invalid");
 }
-
-
 
 function deleteBookmark(i) {
   bookMarks.splice(i, 1);
   localStorage.setItem("bookMarks", JSON.stringify(bookMarks));
   display();
 }
-
 
 function updateBookmark(i) {
   updateIndex = i;
